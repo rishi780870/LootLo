@@ -27,22 +27,7 @@ function Deposit() {
     }
   };
 
-  const sendTelegramMessage = async (name, email, amount, utr) => {
-    try {
-      const BOT_TOKEN = "8570117120:AAHlGf-zJIDJ5T1oRCEJDyASrDNWpES1C-8";
-      const CHAT_ID = "7629976258";
-      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: `🔥 NEW DEPOSIT REQUEST\n\n👤 Name: ${name}\n📧 Email: ${email}\n💰 Amount: ₹${amount}\n🧾 UTR: ${utr}\n\n⏳ Status: Pending`,
-        }),
-      });
-    } catch (e) {
-      console.log("Telegram Error:", e);
-    }
-  };
+  
 
   const submitDeposit = async () => {
     if (!amount) { alert("Enter Amount"); return; }
@@ -61,7 +46,6 @@ function Deposit() {
         status: "pending",
         createdAt: new Date(),
       });
-      await sendTelegramMessage(userData?.name, userData?.email, amount, utr);
       alert("Deposit Request Submitted ✅\nWe'll credit your balance after verification.");
       setAmount("");
       setUtr("");
