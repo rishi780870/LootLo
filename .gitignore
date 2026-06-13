@@ -8,4 +8,3 @@ build
 .env.local
 
 server/serviceAccountKey.json
-server/*.json
